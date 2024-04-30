@@ -25,12 +25,10 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>HEAD</h1>
+        <h1 className="text-center my-2">Reazione a Catena!!</h1>
+        <p className="text-center my-2">sviluppato in una notte e mezza da vincenzomaiorana.it</p>
       </header>
-      <main>
-        <Outlet />
-        {pathname === "/play" && <Scoreboard words={words} />}
-      </main>
+      <main>{pathname === "/play" ? <Scoreboard words={words} /> : <Outlet />}</main>
     </div>
   );
 }

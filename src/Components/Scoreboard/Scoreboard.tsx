@@ -3,6 +3,7 @@ import "./Scoreboard.scss";
 import { NoClick } from "../NoClick/NoClick";
 import { useEffect, useState } from "react";
 import { GameOver } from "../GameOver/GameOver";
+import { NotFound } from "../NotFound/NotFound";
 
 interface IScoreboard {
   words: string[];
@@ -67,52 +68,58 @@ export const Scoreboard = ({ words }: IScoreboard) => {
   }, [points]);
 
   return (
-    <Container className="scoreboard-main">
-      <GameOver points={points} show={showGameOver} />
-      <Row className="mb-3 sb-row">
-        <Col className="d-flex justify-content-center align-items-center">
-          <NoClick content={":" + time} color={running ? "#023047" : "red"} />
-        </Col>
-        <Col className="d-flex justify-content-center align-items-center">
-          <NoClick content={words[activeWord]} color="#219EBC" main={true} />
-        </Col>
-        <Col className="d-flex justify-content-center align-items-center">
-          <NoClick content={points?.toString()} color="#FB8500" />
-        </Col>
-      </Row>
-      <Row>
-        <Col className="d-flex justify-content-center align-items-center py-5 gap-3">
-          <Button
-            className="btn-controls"
-            disabled={points < 1 || running}
-            onClick={() => {
-              handlePoints("down");
-            }}
-          >
-            -1
-          </Button>
-          <Button
-            className="btn-controls"
-            onClick={(e) => {
-              e.currentTarget.blur();
-              handleNewWord(true);
-              setPass(pass - 1);
-            }}
-            disabled={pass < 1}
-          >
-            {pass > 0 ? pass : "X"}
-          </Button>
-          <Button
-            className="btn-controls"
-            disabled={running}
-            onClick={() => {
-              handlePoints("up");
-            }}
-          >
-            +1
-          </Button>
-        </Col>
-      </Row>
-    </Container>
+    <>
+      {words.length ? (
+        <Container className="scoreboard-main">
+          <GameOver points={points} show={showGameOver} />
+          <Row className="mb-3 sb-row">
+            <Col className="d-flex justify-content-center align-items-center">
+              <NoClick content={":" + time} color={running ? "#023047" : "red"} />
+            </Col>
+            <Col className="d-flex justify-content-center align-items-center">
+              <NoClick content={words[activeWord]} color="#219EBC" main={true} />
+            </Col>
+            <Col className="d-flex justify-content-center align-items-center">
+              <NoClick content={points?.toString()} color="#FB8500" />
+            </Col>
+          </Row>
+          <Row>
+            <Col className="d-flex justify-content-center align-items-center py-5 gap-3">
+              <Button
+                className="btn-controls"
+                disabled={points < 1 || running}
+                onClick={() => {
+                  handlePoints("down");
+                }}
+              >
+                -1
+              </Button>
+              <Button
+                className="btn-controls"
+                onClick={(e) => {
+                  e.currentTarget.blur();
+                  handleNewWord(true);
+                  setPass(pass - 1);
+                }}
+                disabled={pass < 1}
+              >
+                {pass > 0 ? pass : "X"}
+              </Button>
+              <Button
+                className="btn-controls"
+                disabled={running}
+                onClick={() => {
+                  handlePoints("up");
+                }}
+              >
+                +1
+              </Button>
+            </Col>
+          </Row>
+        </Container>
+      ) : (
+        <NotFound />
+      )}
+    </>
   );
 };

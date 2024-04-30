@@ -6,7 +6,7 @@ export const NotFound = () => {
 
   return (
     <div className="d-flex flex-column">
-      <h2>Cosa stai cerdando di fare?</h2>
+      <h2>Cosa stai cercando di fare?</h2>
       <Button onClick={() => navigate("/")}>Torna alla home!</Button>
     </div>
   );
