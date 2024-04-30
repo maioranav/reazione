@@ -40,6 +40,10 @@ Permette di gestire il valore massimo delle parole che è possibile utilizzare i
 
 Permette di impostare la durata massima della partita (valore espresso in secondi)
 
+### `REACT_APP_MAX_PASS`
+
+Permette di impostare gli skip massimi in game prima dello stop del timer.
+
 ## Come modificare le parole
 
 E' possibile modificare le parole agendo sul file `dictionary.json`.\

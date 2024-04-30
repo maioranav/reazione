@@ -13,7 +13,7 @@ interface IScoreboard {
 export const Scoreboard = ({ words }: IScoreboard) => {
   const [time, setTime] = useState(Number(process.env.REACT_APP_MAX_TIME)); //TODO: set max timer
   const [points, setPoints] = useState(0);
-  const [pass, setPass] = useState(2);
+  const [pass, setPass] = useState(Number(process.env.REACT_APP_MAX_PASS)); //TODO: set max pass
   const [activeWord, setActiveWord] = useState(0);
   const [showGameOver, setShowGameOver] = useState(false);
   const [running, setRunning] = useState(true);
@@ -53,8 +53,7 @@ export const Scoreboard = ({ words }: IScoreboard) => {
   const handlePoints = (direction: "up" | "down") => {
     if (direction === "up") setPoints(points + 1);
     else {
-      if (points > 0) setPoints(points - 1);
-      else handleNewWord();
+      handleNewWord();
     }
   };
 
@@ -114,13 +113,14 @@ export const Scoreboard = ({ words }: IScoreboard) => {
           <Row>
             <Col className="d-flex justify-content-center align-items-center py-5 gap-3">
               <Button
+                variant="light"
                 className="btn-controls"
                 disabled={running}
                 onClick={() => {
                   handlePoints("down");
                 }}
               >
-                -1
+                Next
               </Button>
               <Button
                 className="btn-controls"
@@ -129,7 +129,7 @@ export const Scoreboard = ({ words }: IScoreboard) => {
                   handleNewWord(true);
                   setPass(pass - 1);
                 }}
-                disabled={pass < 1}
+                disabled={pass < 1 || !running}
               >
                 {pass > 0 ? pass : "X"}
               </Button>
