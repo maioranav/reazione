@@ -1,18 +1,26 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { Homepage } from "./Components/Homepage/Homepage";
 import { Scoreboard } from "./Components/Scoreboard/Scoreboard";
 import { NotFound } from "./Components/NotFound/NotFound";
 import dictionary from "./dictionary.json";
 import "./App.scss";
+import { useEffect, useState } from "react";
 
 function App() {
+  const { pathname } = useLocation();
+  const [words, setWords] = useState<string[]>([]);
+
   const getRandomWords = () => {
     const words = Object.values(dictionary.dictionary);
     const shuffledWords = words.sort(() => 0.5 - Math.random());
     const selectedWords = shuffledWords.slice(0, 10);
     console.warn("Rigenero le parole!", selectedWords);
-    return selectedWords;
+    setWords(selectedWords);
   };
+
+  useEffect(() => {
+    if (pathname === "/") getRandomWords();
+  }, [pathname]);
 
   return (
     <div className="App">
@@ -20,13 +28,8 @@ function App() {
         <h1>HEAD</h1>
       </header>
       <main>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/play" element={<Scoreboard words={getRandomWords()} />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <Outlet />
+        {pathname === "/play" && <Scoreboard words={words} />}
       </main>
     </div>
   );
