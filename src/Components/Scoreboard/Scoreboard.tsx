@@ -10,7 +10,7 @@ interface IScoreboard {
 }
 
 export const Scoreboard = ({ words }: IScoreboard) => {
-  const [time, setTime] = useState(20); //TODO: set max timer
+  const [time, setTime] = useState(Number(process.env.REACT_APP_MAX_TIME)); //TODO: set max timer
   const [points, setPoints] = useState(0);
   const [pass, setPass] = useState(2);
   const [activeWord, setActiveWord] = useState(0);

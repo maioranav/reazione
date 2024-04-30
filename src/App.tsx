@@ -11,7 +11,7 @@ function App() {
   const getRandomWords = () => {
     const words = Object.values(dictionary.dictionary);
     const shuffledWords = words.sort(() => 0.5 - Math.random());
-    const selectedWords = shuffledWords.slice(0, 10); // TODO: change to max value needed
+    const selectedWords = shuffledWords.slice(0, Number(process.env.REACT_APP_MAX_WORDS)); // TODO: change to max value needed
     console.warn("Rigenero le parole!", selectedWords);
     setWords(selectedWords);
   };
