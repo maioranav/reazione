@@ -4,11 +4,15 @@ import { NoClick } from "../NoClick/NoClick";
 import { useEffect, useState } from "react";
 import { GameOver } from "../GameOver/GameOver";
 
-export const Scoreboard = () => {
+interface IScoreboard {
+  words: string[];
+}
+
+export const Scoreboard = ({ words }: IScoreboard) => {
   const [time, setTime] = useState(20);
   const [points, setPoints] = useState(0);
   const [pass, setPass] = useState(2);
-  const [activeWord, setActiveWord] = useState("Test");
+  const [activeWord, setActiveWord] = useState(0);
   const [showGameOver, setShowGameOver] = useState(false);
   const [running, setRunning] = useState(true);
 
@@ -28,12 +32,13 @@ export const Scoreboard = () => {
     const handleKeyPress = (event: { keyCode: number }) => {
       if (event.keyCode === 32) {
         // Check if the pressed key is "SPACE" (key code 32)
-        setRunning(!running); // Toggle the running state
-        if (!running) console.warn("newword");
+        setRunning(false); // Toggle the running state
       }
     };
 
-    document.addEventListener("keydown", handleKeyPress);
+    if (running) {
+      document.addEventListener("keydown", handleKeyPress);
+    }
 
     return () => {
       document.removeEventListener("keydown", handleKeyPress);
@@ -45,9 +50,21 @@ export const Scoreboard = () => {
     else if (points > 0) setPoints(points - 1);
   };
 
-  const handleNewWord = () => {
-    console.log("New Word");
+  const handleNewWord = (pass?: boolean) => {
+    if (!running || pass) {
+      if (activeWord < words.length - 1) setActiveWord(activeWord + 1);
+      else {
+        setShowGameOver(true);
+        setRunning(false);
+        return;
+      }
+    }
+    setRunning(true);
   };
+
+  useEffect(() => {
+    handleNewWord();
+  }, [points]);
 
   return (
     <Container className="scoreboard-main">
@@ -57,7 +74,7 @@ export const Scoreboard = () => {
           <NoClick content={":" + time} color={running ? "#023047" : "red"} />
         </Col>
         <Col className="d-flex justify-content-center align-items-center">
-          <NoClick content={activeWord} color="#219EBC" main={true} />
+          <NoClick content={words[activeWord]} color="#219EBC" main={true} />
         </Col>
         <Col className="d-flex justify-content-center align-items-center">
           <NoClick content={points?.toString()} color="#FB8500" />
@@ -67,7 +84,7 @@ export const Scoreboard = () => {
         <Col className="d-flex justify-content-center align-items-center py-5 gap-3">
           <Button
             className="btn-controls"
-            disabled={points < 1}
+            disabled={points < 1 || running}
             onClick={() => {
               handlePoints("down");
             }}
@@ -76,7 +93,9 @@ export const Scoreboard = () => {
           </Button>
           <Button
             className="btn-controls"
-            onClick={() => {
+            onClick={(e) => {
+              e.currentTarget.blur();
+              handleNewWord(true);
               setPass(pass - 1);
             }}
             disabled={pass < 1}
@@ -85,6 +104,7 @@ export const Scoreboard = () => {
           </Button>
           <Button
             className="btn-controls"
+            disabled={running}
             onClick={() => {
               handlePoints("up");
             }}
