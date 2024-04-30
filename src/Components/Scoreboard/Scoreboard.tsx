@@ -75,7 +75,7 @@ export const Scoreboard = ({ words }: IScoreboard) => {
           <Row className="mb-3 sb-row">
             <p style={{ position: "absolute", top: 0, left: 0, width: "100%", textAlign: "center" }}>{!running && "PAUSE"}</p>
             <Col className="d-flex justify-content-center align-items-center">
-              <NoClick content={":" + time} color={running ? "#023047" : "red"} />
+              <NoClick content={":" + time} color={running ? "#023047" : "red"} onClick={() => setRunning(false)} />
             </Col>
             <Col className="d-flex justify-content-center align-items-center">
               <NoClick content={words[activeWord]} color="#219EBC" main={true} />
