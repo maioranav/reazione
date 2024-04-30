@@ -1,46 +1,58 @@
-# Getting Started with Create React App
+# Intesa Reazionale
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Gioco ispirato al programma Reazione a Catena di Rai1.\
+Creato nelle notti insonni di Vincenzo, Raffaele e Federico.
 
-## Available Scripts
+## Come avviarlo
 
-In the project directory, you can run:
+Direttamente dalla cartella root del progetto puoi eseguire i seguenti comandi:
+
+### `npm install`
+
+Questo comando installerà tutte le dipendenze necessarie per eseguire l'app.
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Avvia l'applicazione in modalità "di sviluppo".\
+Apri [http://localhost:3000](http://localhost:3000) per visualizzarla nel tuo browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+La pagina esegue un refresh automatico in caso di modifche al codice.\
+Puoi vedere inoltre eventuali errori del linter nella console.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Crea un bundle pronto per la produzione all'interno della cartella `build`.\
+Il bundle viene creato in modalità produzione e viene ottimizzato per ottenere prestazioni elevate.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+La build prodotta viene minificata e hashata pronta per il deploy!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Come modificare le variabili di gioco
 
-### `npm run eject`
+E' possibile modificare le variabili di gioco agendo sul file `.env`.\
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### `REACT_APP_MAX_WORDS`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Permette di gestire il valore massimo delle parole che è possibile utilizzare in-game.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### `REACT_APP_MAX_TIME`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Permette di impostare la durata massima della partita (valore espresso in secondi)
 
-## Learn More
+## Come modificare le parole
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+E' possibile modificare le parole agendo sul file `dictionary.json`.\
+E' necessario che la proprietà dell'oggetto json che contiene l'array di parole si chiami `dictionary`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Come giocare
+
+Dopo aver eseguito l'applicazione, premere la BARRA SPAZIATRICE per interrompere il tempo e dare una risposta.\
+Se la risposta è esatta premere +1, altrimenti -1.
+In caso il concorrente voglia skippare la parola si hanno a disposizione 2 PASS.
+
+## Come contribuire
+
+Se vuoi contribuire al progetto, puoi aprire una pull request.
+
+## License MIT
+
+Copyright (c) 2024 vincenzomaiorana.it

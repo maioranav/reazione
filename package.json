@@ -1,7 +1,10 @@
 {
   "name": "reazione",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "author": "maioranav",
+  "description": "Gioco ispirato al programma Reazione a Catena di Rai1",
+  "license": "MIT",
   "dependencies": {
     "@types/node": "^20.12.7",
     "@types/react": "^18.3.1",
