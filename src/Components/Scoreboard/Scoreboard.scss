@@ -22,3 +22,9 @@
     }
   }
 }
+
+button {
+  &:disabled {
+    visibility: hidden;
+  }
+}

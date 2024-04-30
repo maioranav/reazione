@@ -99,7 +99,9 @@ export const Scoreboard = ({ words }: IScoreboard) => {
             <source type="audio/mpeg" src={currentEffect} />
           </audio>
           <Row className="mb-3 sb-row">
-            <p style={{ position: "absolute", top: 0, left: 0, width: "100%", textAlign: "center" }}>{!running && "PAUSE"}</p>
+            <p style={{ position: "absolute", top: "-3rem", left: 0, width: "100%", textAlign: "center" }} className="text-danger fw-bold">
+              {!running && "PAUSA"}
+            </p>
             <Col className="d-flex justify-content-center align-items-center">
               <NoClick content={":" + time} color={running ? "#023047" : "red"} onClick={() => setRunning(false)} />
             </Col>
@@ -114,15 +116,17 @@ export const Scoreboard = ({ words }: IScoreboard) => {
             <Col className="d-flex justify-content-center align-items-center py-5 gap-3">
               <Button
                 variant="light"
+                style={{ fontSize: "1.5rem" }}
                 className="btn-controls"
                 disabled={running}
                 onClick={() => {
                   handlePoints("down");
                 }}
               >
-                Next
+                NEXT
               </Button>
               <Button
+                variant="danger"
                 className="btn-controls"
                 onClick={(e) => {
                   e.currentTarget.blur();
@@ -131,11 +135,12 @@ export const Scoreboard = ({ words }: IScoreboard) => {
                 }}
                 disabled={pass < 1 || !running}
               >
-                {pass > 0 ? pass : "X"}
+                PASS ({pass > 0 ? pass : "X"})
               </Button>
               <Button
                 className="btn-controls"
                 disabled={running}
+                style={{ fontSize: "2rem" }}
                 onClick={() => {
                   handlePoints("up");
                 }}
