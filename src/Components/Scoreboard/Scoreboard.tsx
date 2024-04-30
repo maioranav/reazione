@@ -2,15 +2,21 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import "./Scoreboard.scss";
 import { NoClick } from "../NoClick/NoClick";
 import { useEffect, useState } from "react";
+import { GameOver } from "../GameOver/GameOver";
 
 export const Scoreboard = () => {
-  const [time, setTime] = useState(120);
+  const [time, setTime] = useState(20);
   const [points, setPoints] = useState(0);
   const [pass, setPass] = useState(2);
+  const [showGameOver, setShowGameOver] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTime(time - 1);
+      if (time > 0) setTime(time - 1);
+      else {
+        setShowGameOver(true);
+        clearInterval(interval);
+      }
     }, 1000);
     return () => clearInterval(interval);
   });
@@ -25,6 +31,7 @@ export const Scoreboard = () => {
 
   return (
     <Container className="scoreboard-main">
+      <GameOver points={points} show={showGameOver} />
       <Row className="mb-3 sb-row">
         <Col className="d-flex justify-content-center align-items-center">
           <NoClick content={":" + time} color="#023047" />
