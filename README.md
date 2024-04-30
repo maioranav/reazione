@@ -3,6 +3,8 @@
 Gioco ispirato al programma Reazione a Catena di Rai1.\
 Creato nelle notti insonni di Vincenzo, Raffaele e Federico.
 
+[Clicca qui](http://localhost:3000) per giocare alla nostra versione online.
+
 ## Come avviarlo
 
 Direttamente dalla cartella root del progetto puoi eseguire i seguenti comandi:
