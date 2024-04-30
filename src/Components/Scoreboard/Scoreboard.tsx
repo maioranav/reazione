@@ -52,7 +52,10 @@ export const Scoreboard = ({ words }: IScoreboard) => {
 
   const handlePoints = (direction: "up" | "down") => {
     if (direction === "up") setPoints(points + 1);
-    else if (points > 0) setPoints(points - 1);
+    else {
+      if (points > 0) setPoints(points - 1);
+      else handleNewWord();
+    }
   };
 
   const handleNewWord = (pass?: boolean) => {
@@ -112,7 +115,7 @@ export const Scoreboard = ({ words }: IScoreboard) => {
             <Col className="d-flex justify-content-center align-items-center py-5 gap-3">
               <Button
                 className="btn-controls"
-                disabled={points < 1 || running}
+                disabled={running}
                 onClick={() => {
                   handlePoints("down");
                 }}
