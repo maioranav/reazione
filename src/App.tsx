@@ -12,7 +12,7 @@ function App() {
     const words = Object.values(dictionary.dictionary);
     const shuffledWords = words.sort(() => 0.5 - Math.random());
     const selectedWords = shuffledWords.slice(0, Number(process.env.REACT_APP_MAX_WORDS)); // TODO: change to max value needed
-    console.warn("Rigenero le parole!", selectedWords);
+    console.warn("Rigenero le parole!");
     setWords(selectedWords);
   };
 
@@ -23,8 +23,8 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1 className="text-center my-2">Reazione a Catena!!</h1>
-        <p className="text-center my-2">sviluppato in una notte e mezza da vincenzomaiorana.it</p>
+        <h1 className="text-center my-2">Intesa Reazionale!!</h1>
+        <p className="text-center my-2">frutto di menti e notti malate: di Federico, Raffaele e Vincenzo.</p>
       </header>
       <main>{pathname === "/play" ? <Scoreboard words={words} /> : <Outlet />}</main>
     </div>

@@ -1,7 +1,7 @@
 {
-  "short_name": "reazioneacatena",
-  "name": "Reazione a Catena!",
-  "description": "Gioco ispirato al programma \"L'eredità\" di Rai1",
+  "short_name": "Intesa Reazionale",
+  "name": "Intesa Reazionale!",
+  "description": "Gioco ispirato al programma Reazione a Catena di Rai1",
   "icons": [
     {
       "src": "favicon.ico",
