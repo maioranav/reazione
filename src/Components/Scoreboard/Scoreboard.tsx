@@ -8,25 +8,45 @@ export const Scoreboard = () => {
   const [time, setTime] = useState(20);
   const [points, setPoints] = useState(0);
   const [pass, setPass] = useState(2);
+  const [activeWord, setActiveWord] = useState("Test");
   const [showGameOver, setShowGameOver] = useState(false);
+  const [running, setRunning] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (time > 0) setTime(time - 1);
-      else {
+      if (time <= 0 && running) {
         setShowGameOver(true);
         clearInterval(interval);
+      } else {
+        if (running) setTime(time - 1);
       }
     }, 1000);
     return () => clearInterval(interval);
-  });
+  }, [time, running]);
+
+  useEffect(() => {
+    const handleKeyPress = (event: { keyCode: number }) => {
+      if (event.keyCode === 32) {
+        // Check if the pressed key is "SPACE" (key code 32)
+        setRunning(!running); // Toggle the running state
+        if (!running) console.warn("newword");
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [running]);
 
   const handlePoints = (direction: "up" | "down") => {
-    if (direction === "up") {
-      setPoints(points + 1);
-    } else {
-      if (points > 0) setPoints(points - 1);
-    }
+    if (direction === "up") setPoints(points + 1);
+    else if (points > 0) setPoints(points - 1);
+  };
+
+  const handleNewWord = () => {
+    console.log("New Word");
   };
 
   return (
@@ -34,10 +54,10 @@ export const Scoreboard = () => {
       <GameOver points={points} show={showGameOver} />
       <Row className="mb-3 sb-row">
         <Col className="d-flex justify-content-center align-items-center">
-          <NoClick content={":" + time} color="#023047" />
+          <NoClick content={":" + time} color={running ? "#023047" : "red"} />
         </Col>
         <Col className="d-flex justify-content-center align-items-center">
-          <NoClick content="immaGinaRe" color="#219EBC" main={true} />
+          <NoClick content={activeWord} color="#219EBC" main={true} />
         </Col>
         <Col className="d-flex justify-content-center align-items-center">
           <NoClick content={points?.toString()} color="#FB8500" />
