@@ -1,3 +1,4 @@
+import React from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "./Scoreboard.scss";
 import { NoClick } from "../NoClick/NoClick";
@@ -16,6 +17,9 @@ export const Scoreboard = ({ words }: IScoreboard) => {
   const [activeWord, setActiveWord] = useState(0);
   const [showGameOver, setShowGameOver] = useState(false);
   const [running, setRunning] = useState(true);
+
+  const audioRef = React.useRef<HTMLAudioElement | null>(null);
+  const [currentEffect, setCurrentEffect] = useState("/sounds/stop.mp3");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -67,11 +71,31 @@ export const Scoreboard = ({ words }: IScoreboard) => {
     handleNewWord();
   }, [points]);
 
+  useEffect(() => {
+    if (!running) {
+      setCurrentEffect("/sounds/stop.mp3");
+    }
+  }, [running]);
+
+  useEffect(() => {
+    if (currentEffect === "/sounds/newword.mp3") {
+      audioRef.current?.play();
+    }
+    setCurrentEffect("/sounds/newword.mp3");
+  }, [activeWord]);
+
+  useEffect(() => {
+    audioRef.current?.load();
+  }, [currentEffect]);
+
   return (
     <>
       {words.length ? (
         <Container className="scoreboard-main">
           <GameOver points={points} show={showGameOver} />
+          <audio preload="metadata" autoPlay ref={audioRef}>
+            <source type="audio/mpeg" src={currentEffect} />
+          </audio>
           <Row className="mb-3 sb-row">
             <p style={{ position: "absolute", top: 0, left: 0, width: "100%", textAlign: "center" }}>{!running && "PAUSE"}</p>
             <Col className="d-flex justify-content-center align-items-center">

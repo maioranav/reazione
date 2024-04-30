@@ -6,6 +6,9 @@ export const Homepage = () => {
 
   return (
     <>
+      <audio preload="metadata" autoPlay>
+        <source type="audio/mpeg" src="/sounds/intro.mp3" />
+      </audio>
       <Button onClick={() => navigate("/play")}>GIOCA!</Button>
     </>
   );
