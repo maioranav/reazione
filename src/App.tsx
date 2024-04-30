@@ -1,10 +1,8 @@
-import { BrowserRouter, Outlet, Route, Routes, useLocation } from "react-router-dom";
-import { Homepage } from "./Components/Homepage/Homepage";
+import { Outlet, useLocation } from "react-router-dom";
 import { Scoreboard } from "./Components/Scoreboard/Scoreboard";
-import { NotFound } from "./Components/NotFound/NotFound";
 import dictionary from "./dictionary.json";
-import "./App.scss";
 import { useEffect, useState } from "react";
+import "./App.scss";
 
 function App() {
   const { pathname } = useLocation();
@@ -13,7 +11,7 @@ function App() {
   const getRandomWords = () => {
     const words = Object.values(dictionary.dictionary);
     const shuffledWords = words.sort(() => 0.5 - Math.random());
-    const selectedWords = shuffledWords.slice(0, 10);
+    const selectedWords = shuffledWords.slice(0, 10); // TODO: change to max value needed
     console.warn("Rigenero le parole!", selectedWords);
     setWords(selectedWords);
   };

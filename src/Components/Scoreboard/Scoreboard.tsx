@@ -10,7 +10,7 @@ interface IScoreboard {
 }
 
 export const Scoreboard = ({ words }: IScoreboard) => {
-  const [time, setTime] = useState(20);
+  const [time, setTime] = useState(20); //TODO: set max timer
   const [points, setPoints] = useState(0);
   const [pass, setPass] = useState(2);
   const [activeWord, setActiveWord] = useState(0);
@@ -73,6 +73,7 @@ export const Scoreboard = ({ words }: IScoreboard) => {
         <Container className="scoreboard-main">
           <GameOver points={points} show={showGameOver} />
           <Row className="mb-3 sb-row">
+            <p style={{ position: "absolute", top: 0, left: 0, width: "100%", textAlign: "center" }}>{!running && "PAUSE"}</p>
             <Col className="d-flex justify-content-center align-items-center">
               <NoClick content={":" + time} color={running ? "#023047" : "red"} />
             </Col>

@@ -3,12 +3,13 @@
   min-height: 100px;
   font-weight: 600;
   font-size: 1.2rem;
-  background-color: #ffb703;
+  background-color: #bb6400;
 }
 
 .sb-row {
-  @media screen and (max-width: 767px) {
-    .col {
+  position: relative;
+  .col {
+    @media screen and (max-width: 767px) {
       &:nth-child(1) {
         order: 1;
       }
