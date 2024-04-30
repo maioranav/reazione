@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import App from "./App";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { NotFound } from "./Components/NotFound/NotFound";
@@ -20,3 +21,5 @@ root.render(
     <RouterProvider router={router} />
   </React.StrictMode>
 );
+
+serviceWorkerRegistration.register();
