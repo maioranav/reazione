@@ -5,12 +5,14 @@ import { NoClick } from "../NoClick/NoClick";
 import { useEffect, useState } from "react";
 import { GameOver } from "../GameOver/GameOver";
 import { NotFound } from "../NotFound/NotFound";
+import { useNavigate } from "react-router";
 
 interface IScoreboard {
   words: string[];
 }
 
 export const Scoreboard = ({ words }: IScoreboard) => {
+  const navigate = useNavigate();
   const [time, setTime] = useState(Number(process.env.REACT_APP_MAX_TIME)); //TODO: set max timer
   const [points, setPoints] = useState(0);
   const [pass, setPass] = useState(Number(process.env.REACT_APP_MAX_PASS)); //TODO: set max pass
