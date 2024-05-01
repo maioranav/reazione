@@ -15,7 +15,7 @@ export const GameOver = ({ points, show }: IGameOver) => {
 
   return (
     <Modal show={show} backdrop="static" keyboard={false} onHide={handleReset} style={{ margin: "20dvh auto" }}>
-      <Modal.Header>
+      <Modal.Header className="d-flex justify-content-center">
         <Modal.Title>Game Over !!!</Modal.Title>
       </Modal.Header>
       <Modal.Body className="d-flex justify-content-center">
