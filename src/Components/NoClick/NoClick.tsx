@@ -1,4 +1,5 @@
 import "./NoClick.scss";
+import { ReactTyped } from "react-typed";
 
 interface INoClick {
   content: string;
@@ -10,9 +11,13 @@ interface INoClick {
 export const NoClick = ({ content, color, main, onClick }: INoClick) => {
   return (
     <>
-      <div style={{ backgroundColor: color }} onClick={onClick} className={"noclick " + (main ? "main" : "")}>
-        {content?.toUpperCase()}
-      </div>
+      {main ? (
+        <ReactTyped strings={[content]} typeSpeed={50} className="noclick main" style={{ background: color }} showCursor={false} />
+      ) : (
+        <div style={{ backgroundColor: color }} onClick={onClick} className={"noclick"}>
+          {content?.toUpperCase()}
+        </div>
+      )}
     </>
   );
 };
