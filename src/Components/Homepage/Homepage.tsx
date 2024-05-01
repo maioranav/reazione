@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
-import { Button } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "./Homepage.scss";
+import { Regole } from "../Regole/Regole";
 
 export const Homepage = () => {
   const navigate = useNavigate();
+  const [showRules, setShowRules] = useState(false);
 
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
 
@@ -22,9 +24,24 @@ export const Homepage = () => {
         <Button variant="primary" onClick={() => navigate("/play")} className="start-game-btn my-5">
           GIOCA!
         </Button>
-        <Button variant="secondary" onClick={() => {}} className="show-rules-btn my-5">
+        <Button
+          variant="secondary"
+          onClick={() => {
+            setShowRules(true);
+          }}
+          className="show-rules-btn my-5"
+        >
           Regolamento
         </Button>
+        <Regole
+          show={showRules}
+          close={() => {
+            setShowRules(false);
+          }}
+        ></Regole>
+        <Alert className="d-block d-xl-none" variant="warning">
+          Gioca da PC per un'esperienza di gioco migliore!
+        </Alert>
       </div>
     </>
   );
