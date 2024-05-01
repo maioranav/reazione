@@ -149,6 +149,11 @@ export const Scoreboard = ({ words }: IScoreboard) => {
               </Button>
             </Col>
           </Row>
+          <div className="d-flex justify-content-center">
+            <Button variant="" onClick={() => navigate("/")}>
+              Reset
+            </Button>
+          </div>
         </Container>
       ) : (
         <NotFound />
