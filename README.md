@@ -3,7 +3,7 @@
 Gioco ispirato al programma Reazione a Catena di Rai1.\
 Creato nelle notti insonni di Vincenzo, Raffaele e Federico.
 
-[Clicca qui](http://localhost:3000) per giocare alla nostra versione online.
+[Clicca qui](https://reazione.vincenzomaiorana.it) per giocare alla nostra versione online.
 
 ## Come avviarlo
 
