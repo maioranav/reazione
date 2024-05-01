@@ -1,0 +1,11 @@
+.start-game-btn {
+  scale: 3;
+  transition: scale 0.3s ease;
+
+  &:hover {
+    scale: 3.1;
+  }
+}
+
+.show-rules-btn {
+}
