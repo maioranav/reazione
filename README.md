@@ -3,7 +3,7 @@
 Gioco ispirato al programma Reazione a Catena di Rai1.\
 Creato nelle notti insonni di Vincenzo, Raffaele e Federico.
 
-[Clicca qui](http://localhost:3000) per giocare alla nostra versione online.
+[Clicca qui](https://reazione.vincenzomaiorana.it) per giocare alla nostra versione online.
 
 ## Come avviarlo
 
@@ -39,6 +39,10 @@ Permette di gestire il valore massimo delle parole che è possibile utilizzare i
 ### `REACT_APP_MAX_TIME`
 
 Permette di impostare la durata massima della partita (valore espresso in secondi)
+
+### `REACT_APP_MAX_PASS`
+
+Permette di impostare gli skip massimi in game prima dello stop del timer.
 
 ## Come modificare le parole
 

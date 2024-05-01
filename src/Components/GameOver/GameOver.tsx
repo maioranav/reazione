@@ -14,15 +14,15 @@ export const GameOver = ({ points, show }: IGameOver) => {
   };
 
   return (
-    <Modal show={show} backdrop="static" keyboard={false} onHide={handleReset}>
-      <Modal.Header closeButton>
+    <Modal show={show} backdrop="static" keyboard={false} onHide={handleReset} style={{ margin: "20dvh auto" }}>
+      <Modal.Header>
         <Modal.Title>Game Over !!!</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        Avete totalizzato <b>{points}</b> punti.
+      <Modal.Body className="d-flex justify-content-center">
+        Avete totalizzato&nbsp;<b>{points}</b>&nbsp;punti.
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" onClick={handleReset}>
+        <Button variant="info" onClick={handleReset}>
           Ricomincia
         </Button>
       </Modal.Footer>
